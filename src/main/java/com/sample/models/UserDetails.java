@@ -20,7 +20,7 @@ public class UserDetails implements Serializable {
     private Long id;
     private String firstName;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     Set<UserRoles> userRoles;
 
     @JsonIgnoreProperties("userDetails")

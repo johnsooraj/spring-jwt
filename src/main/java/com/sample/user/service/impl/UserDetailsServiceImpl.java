@@ -36,11 +36,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public void createDummyUser() {
         //UserCredentials userCredentials = new UserCredentials("john", passwordEncoder.encode("john"));
+        UserDetails userDetails1 = userDetailsRepository.save(getMyUser("john", "john", "User 1"));
+        log.info("new user added id {}", userDetails1.getId());
+    }
+
+    public UserDetails getMyUser(String username, String password, String fullName) {
         UserCredentials userCredentials = new UserCredentials();
-        userCredentials.setUserName("john");
-        userCredentials.setPassword(passwordEncoder.encode("john"));
+        userCredentials.setUserName(username);
+        userCredentials.setPassword(passwordEncoder.encode(password));
         UserDetails userDetails = new UserDetails();
-        userDetails.setFirstName("John Sooraj");
+        userDetails.setFirstName(fullName);
         userDetails.setUserCredentials(userCredentials);
         userDetails.setUserRoles(Stream.of(
                 userRolesRepository.findByRoleText("ADMIN1"),
@@ -48,8 +53,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 userRolesRepository.findByRoleText("ADMIN3")
         ).collect(Collectors.toSet()));
         userCredentials.setUserDetails(userDetails);
-        userDetailsRepository.save(userDetails);
-        log.info("new user added id {}", userDetails.getId());
+        return userDetails;
     }
 
     @Override
