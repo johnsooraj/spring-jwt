@@ -46,8 +46,8 @@ public class JwtSpringFilter extends OncePerRequestFilter {
             UserDetails details = authUserDetailsService.loadUserByUsername(username);
             if (jwtUtil.validateToken(jwtToken, details)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        details,
-                        null,
+                        details.getUsername(),
+                        details.getPassword(),
                         details.getAuthorities()
                 );
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));

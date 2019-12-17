@@ -33,10 +33,6 @@ public class AuthUserDetailsService implements UserDetailsService {
         return new User(credentials.getUserName(),
                 String.valueOf(credentials.getPassword()),
                 true, true, true, true,
-                getGrantedAuthorityFromRoles(credentials.getUserDetails().getUserRoles()));
-    }
-
-    private Set<GrantedAuthority> getGrantedAuthorityFromRoles(Set<UserRoles> rolses) {
-        return rolses.stream().map(UserRoles::getRole_text).map(SimpleGrantedAuthority::new).collect(Collectors.toSet());
+                AuthUtils.getGrantedAuthorityFromRoles(credentials.getUserDetails().getUserRoles()));
     }
 }

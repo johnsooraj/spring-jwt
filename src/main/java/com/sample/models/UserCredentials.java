@@ -23,7 +23,7 @@ public class UserCredentials implements Serializable {
     private Long id;
 
     private String userName;
-    private char[] password;
+    private String password;
 
     @UpdateTimestamp
     private Timestamp timestamp;
@@ -42,7 +42,7 @@ public class UserCredentials implements Serializable {
      * @param password internally convert string to char array
      */
 
-    public UserCredentials(String userName, String password) {
+/*    public UserCredentials(String userName, String password) {
         this.userName = userName;
         setPassword(password);
     }
@@ -78,5 +78,5 @@ public class UserCredentials implements Serializable {
                 ", createDate=" + createDate +
                 ", status=" + status +
                 '}';
-    }
+    }*/
 }

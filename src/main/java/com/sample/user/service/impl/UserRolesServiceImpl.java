@@ -18,9 +18,9 @@ public class UserRolesServiceImpl implements UserRolesService {
     @Override
     public void saveAllRoles() {
         List<UserRoles> rolesList = Arrays.asList(
-                new UserRoles("ADMIN1"),
-                new UserRoles("ADMIN2"),
-                new UserRoles("ADMIN3"),
+                new UserRoles("ADMIN"),
+                new UserRoles("GUEST"),
+                new UserRoles("MANAGER"),
                 new UserRoles("ADMIN4"),
                 new UserRoles("ADMIN5"),
                 new UserRoles("ADMIN6"),

@@ -43,14 +43,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails getMyUser(String username, String password, String fullName) {
         UserCredentials userCredentials = new UserCredentials();
         userCredentials.setUserName(username);
-        userCredentials.setPassword(passwordEncoder.encode(password));
+        //userCredentials.setPassword(passwordEncoder.encode(password));
+        userCredentials.setPassword(password);
         UserDetails userDetails = new UserDetails();
         userDetails.setFirstName(fullName);
         userDetails.setUserCredentials(userCredentials);
         userDetails.setUserRoles(Stream.of(
-                userRolesRepository.findByRoleText("ADMIN1"),
-                userRolesRepository.findByRoleText("ADMIN2"),
-                userRolesRepository.findByRoleText("ADMIN3")
+                userRolesRepository.findByRoleText("ADMIN"),
+                userRolesRepository.findByRoleText("GUEST"),
+                userRolesRepository.findByRoleText("MANAGER")
         ).collect(Collectors.toSet()));
         userCredentials.setUserDetails(userDetails);
         return userDetails;
